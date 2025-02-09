@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5f8786b53693ced43b513c125111c2f0
+guid: 5db06deb75febae4ab0a38a345a3a193
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: npc_down_0
+      name: Stamina_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 2
-        width: 13
-        height: 20
+        x: 13
+        y: 10
+        width: 6
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc0126b8781cba74cb9c6b49ee411bba
-      internalID: 29438889
+      spriteID: 0ddcdefc86447be44926a43ce3327723
+      internalID: -679838558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_down_1
+      name: Stamina_1
       rect:
         serializedVersion: 2
-        x: 17
-        y: 2
-        width: 14
-        height: 19
+        x: 21
+        y: 10
+        width: 6
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13869950fabaadd488fa8cbdedf0fd06
-      internalID: 1567595748
+      spriteID: 53d2923f49880484e9a38287b04dd23c
+      internalID: 1761735928
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_down_2
+      name: Stamina_2
       rect:
         serializedVersion: 2
-        x: 33
-        y: 2
-        width: 14
-        height: 20
+        x: 29
+        y: 10
+        width: 6
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72306a61ff1be5242a7ea874837c9b4b
-      internalID: -1968261082
+      spriteID: 7ef4f459a6508554c9d1290c991986a6
+      internalID: -1141275628
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_down_3
+      name: Stamina_3
       rect:
         serializedVersion: 2
-        x: 49
-        y: 2
-        width: 13
-        height: 20
+        x: 37
+        y: 10
+        width: 6
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9e967bd6fa14d6428dd8906d720a832
-      internalID: -1733378218
+      spriteID: e0771ca5b700580498ce48e0156e5fe7
+      internalID: 781842353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_down_4
+      name: Stamina_4
       rect:
         serializedVersion: 2
-        x: 65
-        y: 2
-        width: 14
-        height: 19
+        x: 45
+        y: 10
+        width: 6
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b5a76b459237ba4c847fc72f9e0a741
-      internalID: 1096009565
+      spriteID: 227b2f7d34d4e154c8499c0d9337cefa
+      internalID: 703810860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_down_5
+      name: Stamina_5
       rect:
         serializedVersion: 2
-        x: 81
-        y: 2
-        width: 14
-        height: 20
+        x: 53
+        y: 10
+        width: 6
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61ea094833551e44388d799fa351a4fa
-      internalID: 797099512
+      spriteID: 12ca5ed3cc5bf71418738d6156b3236d
+      internalID: -1819601127
       vertices: []
       indices: 
       edges: []
@@ -246,12 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      npc_down_0: 29438889
-      npc_down_1: 1567595748
-      npc_down_2: -1968261082
-      npc_down_3: -1733378218
-      npc_down_4: 1096009565
-      npc_down_5: 797099512
+      Stamina_0: -679838558
+      Stamina_1: 1761735928
+      Stamina_2: -1141275628
+      Stamina_3: 781842353
+      Stamina_4: 703810860
+      Stamina_5: -1819601127
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
