@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,6 +49,9 @@ public class CutSceneManager : MonoBehaviour
     public GameObject NPC_Boss_Event2;
     public GameObject NPC_Boss_Event3;
 
+    [Header("Animation")]
+    public Animator rabbit;
+
     [Header("Chapter 1 Save")]
     public GameObject Chapter1_Save1;
     public GameObject Chapter1_Save2;
@@ -81,7 +84,7 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator Prologue()
     {
-        GameManager.GameState = "Æ©Åä¸®¾ó";
+        GameManager.GameState = "Æ©ï¿½ä¸®ï¿½ï¿½";
         uiManager.InGameUI.SetActive(false);
         albumManager.album = false;
         isCutScene = true;
@@ -95,7 +98,7 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(WaitForDialogue());
         tutorialManager.TutorialType(1);
         tutorialManager.TutorialUI.SetActive(true);
-        
+
         uiManager.InGameUI.SetActive(true);
         albumManager.album = false;
         isCutScene = false;
@@ -106,7 +109,7 @@ public class CutSceneManager : MonoBehaviour
         while (!inventoryManager.miniGameCamera) yield return null;
         yield return StartCoroutine(WaitForDialogue());
 
-        uiManager.InGameUI.SetActive(false);     
+        uiManager.InGameUI.SetActive(false);
         isCutScene = true;
 
         albumManager.album = true;
@@ -135,13 +138,13 @@ public class CutSceneManager : MonoBehaviour
         textManager.ShowDateText("XX.10.10", 2f);
         ChangePosition(playerControl.gameObject, -1.5f, -1.5f, 0);
         ChangePosition(mainCamera.gameObject, -1.5f, -1.5f, -10);
-        GameManager.GameState = "Æ©Åä¸®¾ó ÄÆ¾À";
+        GameManager.GameState = "Æ©ï¿½ä¸®ï¿½ï¿½ ï¿½Æ¾ï¿½";
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         playerControl.isMove = true;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_1);
         yield return StartCoroutine(WaitForDialogue());
         Effect.SetActive(false);
-        yield return StartCoroutine(fadeManager.ChangeStateFade("ÆÄÆ¼·ë"));
+        yield return StartCoroutine(fadeManager.ChangeStateFade("ï¿½ï¿½Æ¼ï¿½ï¿½"));
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_2);
         yield return StartCoroutine(WaitForDialogue());
         albumManager.album = true;
@@ -203,7 +206,7 @@ public class CutSceneManager : MonoBehaviour
         uiManager.InGameUI.SetActive(false);
         albumManager.album = false;
         isCutScene = true;
-        
+
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         Effect.SetActive(false);
         yield return new WaitForSeconds(1f);
@@ -293,7 +296,7 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.is_ChoiceExpected = true;
         yield return StartCoroutine(WaitForDialogue());
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_2);
-        dialogueManager.ShowChoiceDialogue(true, "³­ÀïÀÌ", "ÀÎÇü");
+        dialogueManager.ShowChoiceDialogue(true, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½");
         yield return StartCoroutine(WaitForDialogue());
 
         yield return new WaitForSeconds(1);
@@ -312,7 +315,7 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         BosUI.gameObject.SetActive(false);
         yield return null;
-        
+
         npc.Hp.gameObject.SetActive(true);
         Blocking_2.SetActive(true);
 
@@ -331,7 +334,7 @@ public class CutSceneManager : MonoBehaviour
         albumManager.album = false;
         isCutScene = true;
         Move = false;
-        
+
         BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
         BlackBackground.gameObject.SetActive(false);
@@ -451,31 +454,35 @@ public class CutSceneManager : MonoBehaviour
         isCutScene = true;
         miniGame.ClearPhotoMode();
 
+        ChangePosition(TinSoldier.Instance.gameObject, 0.6f, -243.8f, 0);
+        TinSoldier.Instance.gameObject.SetActive(true);
+        rabbit.Play("rabbit");
         MainCamera.orthographicSize = 4;
         Effect.SetActive(true);
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         yield return new WaitForSeconds(2f);
 
-        TinSoldier.Instance.Move("Left");
-        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 11.5f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
+        TinSoldier.Instance.Move("Right");
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 7.2f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
 
-        TinSoldier.Instance.Stop("Left");
+        TinSoldier.Instance.Stop("Right");
         yield return new WaitForSeconds(1f);
 
-        TinSoldier.Instance.Move("Left Attack");
+        TinSoldier.Instance.Move("Right Attack");
         yield return new WaitForSeconds(1f);
+        rabbit.Play("rabbit transformation");
 
-        TinSoldier.Instance.Stop("Left");
-        yield return new WaitForSeconds(3f);
+        TinSoldier.Instance.Stop("Right");
+        yield return new WaitForSeconds(1.3f);
 
-        TinSoldier.Instance.Move("Left");
-        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 1.3f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
+        TinSoldier.Instance.Move("Right");
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 17.16f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
 
         TinSoldier.Instance.gameObject.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
 
-        GameManager.GameState = "Chapter 2 ¿¬È¸Àå";
+        GameManager.GameState = "Chapter 2 ï¿½ï¿½È¸ï¿½ï¿½";
         uiManager.InGameUI.SetActive(true);
         MainCamera.orthographicSize = 6;
         Effect.SetActive(false);
