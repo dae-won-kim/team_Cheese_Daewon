@@ -9,10 +9,16 @@ public class InventoryManager : MonoBehaviour
     public Image[] SlotImageDB;
     public bool miniGameCamera = false;
 
+    bool flower = false;
+    bool chicken = false;
+    bool Flower_and_Chicken = false;
+
     private Player player;
     private PlayerAttack playerattack;
     private ItemManager itemManager;
-    public GameObject rightHP;
+    public Dialogue dialogue;
+    private DialogueManager dialogueManager;
+    private DialogueContentManager dialogueContentManager;
 
     public void PickUpItem(Collider2D item)
     {
@@ -26,10 +32,34 @@ public class InventoryManager : MonoBehaviour
                 break;
             }
         }
+
+        if (!Flower_and_Chicken)
+        {
+            for (int i = 0; i < SlotDB.Length; i++)
+            {
+                if (SlotDB[i] == "Flower") flower = true;
+                if (SlotDB[i] == "Chicken") chicken = true;
+            }
+
+            if (flower && chicken)
+            {
+                Flower_and_Chicken = true;
+                dialogueManager.ShowDialogue(dialogue);
+            }
+        }
     }
 
     public void DropItem(int slotIndex)
     {
+        if (Table.trigger)
+        {
+            if (SlotDB[slotIndex] != "Cake")
+            {
+                dialogueManager.ShowDialogue(dialogueContentManager.d_not_a_cake);
+                return;
+            }
+        }
+
         if (string.IsNullOrEmpty(SlotDB[slotIndex])) return;
 
         Item item = itemManager.GetItem(SlotDB[slotIndex]);
@@ -91,11 +121,7 @@ public class InventoryManager : MonoBehaviour
         player = FindFirstObjectByType<Player>();
         playerattack = FindFirstObjectByType<PlayerAttack>();
         itemManager = FindFirstObjectByType<ItemManager>();
-
-        SlotDB[0] = "Flower";
-        SlotImageDB[0].sprite = itemManager.GetItemSprite("Flower");
-
-        SlotDB[1] = "Chicken";
-        SlotImageDB[1].sprite = itemManager.GetItemSprite("Chicken");
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
+        dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
     }
 }

@@ -130,17 +130,24 @@ public class MainCamera : MonoBehaviour
                 break;
 
             case "Chapter 2 복도":
-                if (player.transform.position.y >= -140f)
+                if (player.transform.position.y >= -140)
                 {
                     pos.x = -17.5f;
                     pos.y = Mathf.Clamp(player.transform.position.y, player.transform.position.y, -137.5f);
                 }
 
+                else if (player.transform.position.y <= -152)
+                {
+                    pos.x = Mathf.Clamp(player.transform.position.x, -11.98f, -1.7f);
+                    pos.y = Mathf.Clamp(player.transform.position.y, -165.3f, -156.2f);
+                }
+
                 else
                 {
-                    pos.x = Mathf.Clamp(player.transform.position.x, -42.99f, -18f);
+                    pos.x = Mathf.Clamp(player.transform.position.x, -42.99f, 1.05f);
                     pos.y = -145.5f;
                 }
+
                 break;
 
             case "Chapter 2 연회장 입구":
@@ -166,6 +173,56 @@ public class MainCamera : MonoBehaviour
             case "CutScene 9":
                 pos.x = 9f;
                 pos.y = -244f;
+                break;
+
+            case "CutScene 10":
+                pos.x = Mathf.Clamp(player.transform.position.x, 7.02f, 10.05f);
+                pos.y = Mathf.Clamp(player.transform.position.y, -245.8f, -245.5f);
+                break;
+
+            case "CutScene 10_1":
+                pos.x = -17.5f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -254.3f, -245.5f);
+                break;
+
+            case "CutScene 10_2":
+                pos.x = -17.5f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -254.3f, -245.5f);
+                break;
+
+            case "Chapter 2 하단 복도":
+                pos.x = -36.5f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -192.82f, -182.5f);
+                break;
+
+            case "Chapter 2 Enemy Room":
+                pos.x = -40;
+                pos.y = Mathf.Clamp(player.transform.position.y, -168.2f, -163.5f);
+                break;
+
+            case "Chapter 2 왼쪽 하단 복도":
+                pos.x = -63.5f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -177.2f, -165.5f);
+                break;
+
+            case "Chapter 2 CCTV Room":
+                pos.x = -12.5f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -194.83f, -186.483f);
+                break;
+
+            case "Chapter 2 왼쪽 하단":
+                pos.x = Mathf.Clamp(player.transform.position.x, -68.99f, -61.95f);
+                pos.y = -191.2f;
+                break;
+
+            case "Chapter 2 왼쪽 하단 Enemy Room":
+                pos.x = -79.75f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -175.2f, -173.5f);
+                break;
+
+            case "Event":
+                pos.x = transform.position.x;
+                pos.y = transform.position.y;
                 break;
 
             default:

@@ -7,6 +7,8 @@ using System.Linq;
 
 public class Enemy : MonoBehaviour
 {
+    public static bool layer = false;
+
     private PlayerControl playerControl;
     private Animator animator;
     private Collider2D player;
@@ -14,7 +16,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
 
 
-    private Vector2 playerCheckBox;
+    public Vector2 playerCheckBox;
 
     public int hp = 3;
     private float moveSpeed;
@@ -52,6 +54,19 @@ public class Enemy : MonoBehaviour
         // 애니메이션 재생 후 오브젝트 삭제
         destroyEnemy();
     }
+
+    public IEnumerator PlayDamageAnimation()
+    {
+        if (enemy.gameObject.layer == LayerMask.NameToLayer("attackable object")
+         && enemy.tag == "Push_Object")
+        {
+            animator.Play("Box Damage");
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+            animator.Play(this.gameObject.name + "Idle");
+        }
+    }
+
     public void bearIdle()
     {
         if (gameObject.layer == LayerMask.NameToLayer("enemy"))
@@ -91,7 +106,10 @@ public class Enemy : MonoBehaviour
                 if (isNearPlayer())
                 {
                     // direction vector
-                    Vector2 direction = (playerControl.transform.position - this.transform.position).normalized;
+                    Vector2 direction;
+
+                    if (GameManager.GameState == "CutScene 10") direction = new Vector2(playerControl.transform.position.x - this.transform.position.x, 0).normalized;
+                    else direction = (playerControl.transform.position - this.transform.position).normalized;
 
                     // enemy is on player's left
                     if (playerControl.transform.position.x > this.transform.position.x)
@@ -143,6 +161,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Bullet")) StartCoroutine(PlayDamageAnimation());
+    }
+
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player") && this.gameObject.layer== LayerMask.NameToLayer("enemy"))
@@ -165,6 +188,18 @@ public class Enemy : MonoBehaviour
     {
         if (hp == 0) StartCoroutine(PlayDeathAnimationAndDestroy());
         else bearMove();
+
+        if (layer)
+        {
+            playerCheckBox.x = 50.0f;
+            playerCheckBox.y = 15.0f;
+        }
+
+        else
+        {
+            playerCheckBox.x = 8.0f;
+            playerCheckBox.y = 3.0f;
+        }
     }
 
     void Start()

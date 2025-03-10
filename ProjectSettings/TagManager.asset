@@ -83,6 +83,21 @@ TagManager:
   - Cart Position
   - Rabbit Statue Position
   - Key
+  - "Chapter 2 CCTV Room (\uC785\uAD6C)"
+  - "Chapter 2 CCTV Room (\uCD9C\uAD6C)"
+  - Event 7 (Chapter 2)
+  - Event 8 (Chapter 2)
+  - Event 9 (Chapter 2)
+  - "Chapter 2 \uD558\uB2E8 \uBCF5\uB3C4 (\uC785\uAD6C)"
+  - "Chapter 2 \uD558\uB2E8 \uBCF5\uB3C4 (\uCD9C\uAD6C)"
+  - "Chapter 2 Enemy Room (\uC785\uAD6C)"
+  - "Chapter 2 Enemy Room (\uCD9C\uAD6C)"
+  - "Chapter 2 \uC67C\uCABD \uD558\uB2E8 \uBCF5\uB3C4 (\uC785\uAD6C)"
+  - "Chapter 2 \uC67C\uCABD \uD558\uB2E8 \uBCF5\uB3C4 (\uCD9C\uAD6C)"
+  - "Chapter 2 \uC67C\uCABD \uD558\uB2E8 Enemy Room (\uC785\uAD6C)"
+  - "Chapter 2 \uC67C\uCABD \uD558\uB2E8 Enemy Room (\uCD9C\uAD6C)"
+  - "Chapter 2 \uC67C\uCABD \uD558\uB2E8 (\uC785\uAD6C)"
+  - "Chapter 2 \uC67C\uCABD \uD558\uB2E8 (\uCD9C\uAD6C)"
   layers:
   - Default
   - TransparentFX

@@ -41,6 +41,14 @@ public class Player : MonoBehaviour
                 Destroy(other.gameObject);
                 break;
 
+            case "Event 7 (Chapter 2)": StartCoroutine(cutSceneManager.CutScene_10_1());
+                Destroy(other.gameObject);
+                break;
+
+            case "Event 9 (Chapter 2)": StartCoroutine(cutSceneManager.CutScene_10_2());
+                Destroy(other.gameObject);
+                break;
+
             case "파티룸 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "파티룸 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
@@ -77,6 +85,24 @@ public class Player : MonoBehaviour
 
             case "Chapter 2 창고 입구 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "Chapter 2 창고 입구 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
+            case "Chapter 2 하단 복도 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "Chapter 2 하단 복도 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
+            case "Chapter 2 Enemy Room (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "Chapter 2 Enemy Room (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
+            case "Chapter 2 왼쪽 하단 복도 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "Chapter 2 왼쪽 하단 복도 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
+            case "Chapter 2 CCTV Room (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "Chapter 2 CCTV Room (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
+            case "Chapter 2 왼쪽 하단 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "Chapter 2 왼쪽 하단 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
+            case "Chapter 2 왼쪽 하단 Enemy Room (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "Chapter 2 왼쪽 하단 Enemy Room (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
         }
     }
 

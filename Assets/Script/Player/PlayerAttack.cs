@@ -52,7 +52,7 @@ public class PlayerAttack : MonoBehaviour
             rangedAttackMotion();
         }
 
-        if (playerControl.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+        if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             isAttacking = false;
             attackMotionStop();

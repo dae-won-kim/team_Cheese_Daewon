@@ -15,6 +15,7 @@ public class CutSceneManager : MonoBehaviour
     private UIManager uiManager;
     private NPCEnemy npcEnemy;
     private NPC npc;
+    private Enemy enemy;
     private NPCItem npcItem;
     private N_Player n_Player;
     private Stage1_BlockedWay stage1_BlockedWay;
@@ -28,6 +29,10 @@ public class CutSceneManager : MonoBehaviour
     public Image BlackBackground;
     public Image WhiteBackground;
     public Image PlayerImage;
+    public Image Downed_Player;
+
+    [Header("Text")]
+    public Text Demo_Clear;
 
     [Header("Effect")]
     public GameObject Effect;
@@ -48,6 +53,7 @@ public class CutSceneManager : MonoBehaviour
     public GameObject NPC_Boss_Event1;
     public GameObject NPC_Boss_Event2;
     public GameObject NPC_Boss_Event3;
+    public GameObject Event_8;
 
     [Header("Animation")]
     public Animator rabbit;
@@ -71,20 +77,20 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
     }
 
-    public IEnumerator MoveObject(GameObject Object, float x, float y, float speed)
+    public IEnumerator MoveObject(GameObject Object, float x, float y, float z, float speed)
     {
-        Vector2 targetPosition = new Vector2(x, y);
+        Vector3 targetPosition = new Vector3(x, y, z);
 
-        while ((Vector2)Object.transform.position != targetPosition)
+        while ((Vector3)Object.transform.position != targetPosition)
         {
-            Object.transform.position = Vector2.MoveTowards(Object.transform.position, targetPosition, speed * Time.deltaTime);
+            Object.transform.position = Vector3.MoveTowards(Object.transform.position, targetPosition, speed * Time.deltaTime);
             yield return null;
         }
     }
 
     public IEnumerator Prologue()
     {
-        GameManager.GameState = "Ʃ�丮��";
+        GameManager.GameState = "튜토리얼";
         uiManager.InGameUI.SetActive(false);
         albumManager.album = false;
         isCutScene = true;
@@ -138,13 +144,13 @@ public class CutSceneManager : MonoBehaviour
         textManager.ShowDateText("XX.10.10", 2f);
         ChangePosition(playerControl.gameObject, -1.5f, -1.5f, 0);
         ChangePosition(mainCamera.gameObject, -1.5f, -1.5f, -10);
-        GameManager.GameState = "Ʃ�丮�� �ƾ�";
+        GameManager.GameState = "튜토리얼 컷씬";
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         playerControl.isMove = true;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_1);
         yield return StartCoroutine(WaitForDialogue());
         Effect.SetActive(false);
-        yield return StartCoroutine(fadeManager.ChangeStateFade("��Ƽ��"));
+        yield return StartCoroutine(fadeManager.ChangeStateFade("파티룸"));
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_2);
         yield return StartCoroutine(WaitForDialogue());
         albumManager.album = true;
@@ -249,7 +255,7 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(WaitForDialogue());
         yield return new WaitForSeconds(0.1f);
 
-        yield return StartCoroutine(MoveObject(BigTeddyBearBos, playerControl.transform.position.x, BigTeddyBearBos.transform.position.y, 15f));
+        yield return StartCoroutine(MoveObject(BigTeddyBearBos, playerControl.transform.position.x, BigTeddyBearBos.transform.position.y, 0, 15f));
         BigTeddyBearBos.transform.position = new Vector2(-45f, -59f);
         BlackBackground.gameObject.SetActive(true);
         StartCoroutine(CutScene_4());
@@ -296,7 +302,7 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.is_ChoiceExpected = true;
         yield return StartCoroutine(WaitForDialogue());
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_2);
-        dialogueManager.ShowChoiceDialogue(true, "������", "����");
+        dialogueManager.ShowChoiceDialogue(true, "인형", "난쟁이");
         yield return StartCoroutine(WaitForDialogue());
 
         yield return new WaitForSeconds(1);
@@ -342,19 +348,23 @@ public class CutSceneManager : MonoBehaviour
         BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
         BlackBackground.gameObject.SetActive(false);
-        NPC.gameObject.transform.position = npc.transform.position;
-        npc.transform.position = new Vector3(-68, 26.5f, 0);
-        NPC.SetActive(true);
-        npcEnemy = FindFirstObjectByType<NPCEnemy>();
+
+        ChangePosition(playerControl.gameObject, -45.3f, 22, 0);
+        ChangePosition(NPC.gameObject, -49.5f, 22.1f, 0);
+        ChangePosition(npc.gameObject, -68, 26.5f, 0);
+
+        playerControl.StopDirection("Left");
+
         NPC_Boss_Event1.SetActive(true);
         NPC_Boss_Event2.SetActive(true);
         NPC_Boss_Event3.SetActive(true);
+        NPC.SetActive(true);
 
         uiManager.InGameUI.SetActive(true);
-        albumManager.album = false;
         isCutScene = false;
         Move = true;
 
+        npcEnemy = FindFirstObjectByType<NPCEnemy>();
         while (!npcEnemy.event2) yield return null;
         yield return StartCoroutine(WaitForDialogue());
         npcEnemy.CtrlKey.SetActive(true);
@@ -464,34 +474,148 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         TinSoldier.Instance.Move("Right");
-        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 7.2f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 7.2f, TinSoldier.Instance.transform.position.y, 0, TinSoldier.Instance.speed));
 
         TinSoldier.Instance.Stop("Right");
         yield return new WaitForSeconds(1f);
 
         TinSoldier.Instance.Move("Right Attack");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         rabbit.Play("rabbit transformation");
 
         TinSoldier.Instance.Stop("Right");
         yield return new WaitForSeconds(1.3f);
 
         TinSoldier.Instance.Move("Right");
-        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 17.16f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 17.16f, TinSoldier.Instance.transform.position.y, 0, TinSoldier.Instance.speed));
 
         TinSoldier.Instance.gameObject.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
 
-        GameManager.GameState = "Chapter 2 ��ȸ��";
-        uiManager.InGameUI.SetActive(true);
         MainCamera.orthographicSize = 6;
         Effect.SetActive(false);
 
         yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(CutScene_10());
+    }
+
+    public IEnumerator CutScene_10()
+    {
+        GameManager.GameState = "CutScene 10";
+        uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = true;
+        n_Player.isFollow = false;
+
+        ChangePosition(playerControl.gameObject, 6.8f, -244.76f, 0);
+        ChangePosition(n_Player.gameObject, 5.2f, -244.08f, 0);
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
 
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_1);
+        yield return StartCoroutine(WaitForDialogue());
+        yield return new WaitForSeconds(2f);
+
+        GameManager.GameState = "Event";
+        StartCoroutine(MoveObject(mainCamera.gameObject, 10.05f, -245.5f, -10, 1f));
+        while (mainCamera.transform.position.x < 10.05f) yield return null;
+
+        yield return new WaitForSeconds(3f); // Teddy Bear
+
+        GameManager.GameState = "CutScene 10";
+
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_2);
+        yield return StartCoroutine(WaitForDialogue());
+
+        Enemy.layer = true;
+
+        uiManager.InGameUI.SetActive(true);
+        albumManager.album = false;
+        isCutScene = false;
+        n_Player.isFollow = true;
+    }
+
+    public IEnumerator CutScene_10_1()
+    {
+        yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
+        GameManager.GameState = "CutScene 10_1";
+        uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = true;
+        n_Player.isFollow = false;
+        Enemy.layer = false;
+
+        ChangePosition(playerControl.gameObject, -13.225f, -244.055f, 0);
+        playerControl.StopDirection("Right Block");
+
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
+
+        yield return new WaitForSeconds(2f);
+
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_3);
+        yield return StartCoroutine(WaitForDialogue());
+
+        playerControl.StopDirection("Right");
+
+        yield return new WaitForSeconds(0.5f);
+
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_4);
+        yield return StartCoroutine(WaitForDialogue());
+
+        uiManager.InGameUI.SetActive(true);
         albumManager.album = true;
         isCutScene = false;
+        Event_8.SetActive(true);
+    }
+
+    public IEnumerator CutScene_10_2()
+    {
+        uiManager.InGameUI.SetActive(false);
+        playerControl.isMove = false;
+        albumManager.album = false;
+        isCutScene = true;
+
+        playerControl.StopDirection("Down");
+
+        GameManager.GameState = "Event";
+        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(MoveObject(mainCamera.gameObject, mainCamera.transform.position.x, -250f, -10, 1f));
+
+        TinSoldier.Instance.gameObject.SetActive(true);
+        ChangePosition(TinSoldier.Instance.gameObject, -17.5f, -257.2f, 0);
+
+        yield return new WaitForSeconds(2f);
+
+        TinSoldier.Instance.Move("Up");
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, playerControl.transform.position.x, -250.9f, 0, 1f));
+
+        TinSoldier.Instance.Stop("Up");
+        yield return new WaitForSeconds(0.5f);
+
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_5);
+        yield return StartCoroutine(WaitForDialogue());
+        TinSoldier.Instance.Stop("Up Attack");
+        yield return new WaitForSeconds(0.5f);
+
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_6);
+        yield return StartCoroutine(WaitForDialogue());
+        TinSoldier.Instance.Move("Up Attack");
+
+        yield return new WaitForSeconds(0.2f);
+
+        BlackBackground.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+
+        yield return StartCoroutine(fadeManager.FadeOut(Downed_Player, Color.white));
+        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(textManager.FadeInText(Demo_Clear));
+
+        yield return new WaitForSeconds(3f);
+
+        StartCoroutine(fadeManager.FadeIn(Downed_Player, Color.white, false));
+        StartCoroutine(textManager.FadeOutText(Demo_Clear));
+
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(gameManager.GameOver());
     }
 
     public IEnumerator isVibrationEvent()
@@ -521,6 +645,7 @@ public class CutSceneManager : MonoBehaviour
         uiManager = FindFirstObjectByType<UIManager>();
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
         npc = FindFirstObjectByType<NPC>();
+        enemy = FindFirstObjectByType<Enemy>();
         n_Player = FindFirstObjectByType<N_Player>();
         stage1_BlockedWay = FindFirstObjectByType<Stage1_BlockedWay>();
         albumManager = FindFirstObjectByType<AlbumManager>();
@@ -528,6 +653,8 @@ public class CutSceneManager : MonoBehaviour
         saveManager = FindFirstObjectByType<SaveManager>();
         textManager = FindFirstObjectByType<TextManager>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
+
+        Enemy.layer = false;
 
         switch (GameManager.Load)
         {
