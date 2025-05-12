@@ -355828,7 +355828,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uCE74\uBA54\uB77C \uD65C\uC131\uD654 P"
+  m_Text: "\uCE74\uBA54\uB77C \uD65C\uC131\uD654 Tab"
 --- !u!222 &288901158
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -361950,6 +361950,7 @@ MonoBehaviour:
   speed: 5
   wall_Crash_stack: 0
   attackDamage: 0
+  wall: 0
   die: 0
 --- !u!95 &391688342
 Animator:
@@ -384088,7 +384089,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &678090763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393848,7 +393849,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uCE74\uBA54\uB77C \uCD2C\uC601 F"
+  m_Text: "\uCE74\uBA54\uB77C \uCD2C\uC601 Tab"
 --- !u!222 &847826343
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -556638,7 +556639,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 602549464}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.5184696
+  m_Size: 0.51846963
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -570656,7 +570657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1517067794
 MonoBehaviour:
   m_ObjectHideFlags: 0
