@@ -185,8 +185,6 @@ public class PlayerControl : MonoBehaviour
         else isPush = false;
     }
 
-
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (npc.attackDamage && (other.CompareTag("Boss") || other.CompareTag("Boss Bullet")))
@@ -219,6 +217,7 @@ public class PlayerControl : MonoBehaviour
         tutorialManager = FindFirstObjectByType<TutorialManager>();
         gameManager = FindFirstObjectByType<GameManager>();
         npc = FindFirstObjectByType<NPC>();
+
         dialogueManager = FindFirstObjectByType<DialogueManager>();
     }
 }

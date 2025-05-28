@@ -97,7 +97,6 @@ public class PlayerAttack : MonoBehaviour
         fireCurtime = fireCooltime; // 쿨타임 초기화
     }
 
-
     void attackMotionStop()
     {
         if (!isAttacking)
