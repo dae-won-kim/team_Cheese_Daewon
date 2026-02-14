@@ -8,13 +8,13 @@ public class LootBag : MonoBehaviour
     public GameObject droppedItemPrefab;
     public List<Loot> lootList = new List<Loot>();
 
-    List<Loot> GetDroppedItems()    // item 여러개 드랍 가능
+    List<Loot> GetDroppedItems()    
     {
-        int randomNum = Random.Range(1, 101);     // 1-100 퍼센트 확률 설정
+        int randomNum = Random.Range(1, 101);    
         List<Loot> possibleItems = new List<Loot>();
         foreach (Loot item in lootList)
         {
-            if (randomNum <= item.dropChance)   // 랜덤 값 숫자 < 아이템 드랍 확률 -> 아이템이 드랍됨. 
+            if (randomNum <= item.dropChance)   
             {
                 possibleItems.Add(item);
             }

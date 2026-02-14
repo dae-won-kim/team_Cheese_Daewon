@@ -15,7 +15,6 @@ public class MiniGame : MonoBehaviour
     public GameObject minigamePanel;
     public GameObject ingameUIPanel;
 
-    // EÅ° Ä«¸Þ¶ó¾Ù¹ü ÀÌ¹ÌÁö¿¡ ¾î¶² ÀÌ¹ÌÁö°¡ µé¾î°¡¾ß ÇÒ Áö ÆÇ´ÜÇÏ´Â º¯¼öµé
     public static bool isImageChange = false;
 
     private PlayerControl playerControl;
@@ -96,7 +95,7 @@ public class MiniGame : MonoBehaviour
 
             switch (GameManager.GameState)
             {
-                case "Æ©Åä¸®¾ó": MiniGamePosition(-78.2f, -76.2f, 48f, 50f);
+                case "Æ©ï¿½ä¸®ï¿½ï¿½": MiniGamePosition(-78.2f, -76.2f, 48f, 50f);
                     if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value <= -76.9f && x_Axis.value >= -77.1f
                         && y_Axis.value <= 48.7f && y_Axis.value >= 48.35f)
@@ -113,7 +112,7 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "Ã¢°í": MiniGamePosition(-50.5f, -48f, 32f, 33.5f);
+                case "Ã¢ï¿½ï¿½": MiniGamePosition(-50.5f, -48f, 32f, 33.5f);
                     if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value >= -49.15f && x_Axis.value <= -48.8f
                         && y_Axis.value >= 32.3f && y_Axis.value <= 32.5f)
@@ -157,7 +156,7 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "Chapter 2 ¿¬È¸Àå": MiniGamePosition(8f, 10f, -116f, -114f);
+                case "Chapter 2 ï¿½ï¿½È¸ï¿½ï¿½": MiniGamePosition(8f, 10f, -116f, -114f);
                     if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value >= 9.08f && x_Axis.value <= 9.3f
                         && y_Axis.value >= -115.65f && y_Axis.value <= -115.3f)

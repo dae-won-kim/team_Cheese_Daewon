@@ -51,7 +51,6 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         }
  
-        // 애니메이션 재생 후 오브젝트 삭제
         destroyEnemy();
     }
 

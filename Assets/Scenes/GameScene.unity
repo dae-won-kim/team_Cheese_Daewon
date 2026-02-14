@@ -386793,7 +386793,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730974879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -77, y: 46.5, z: 0}
+  m_LocalPosition: {x: -77.09, y: 45.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -575579,13 +575579,10 @@ MonoBehaviour:
   enemies:
   - {fileID: 691012458}
   - {fileID: 1464094604}
-  - {fileID: 2819468759010750739, guid: 7dbda31d9c5768c4da95acf27e93e209, type: 3}
-  - {fileID: 8555072069034547968, guid: 695dee0a3e19572459dc906d49e4af83, type: 3}
-  - {fileID: 7895084260611978397, guid: 6a2fe9ad5f97eee47889773ccdb05bd2, type: 3}
+  - {fileID: 2300072020421813230}
+  - {fileID: 1160150253}
+  - {fileID: 1579897330}
   - {fileID: 1966052708}
-  - {fileID: 7895084260611978397, guid: 6a2fe9ad5f97eee47889773ccdb05bd2, type: 3}
-  - {fileID: 8555072069034547968, guid: 695dee0a3e19572459dc906d49e4af83, type: 3}
-  - {fileID: 2819468759010750739, guid: 7dbda31d9c5768c4da95acf27e93e209, type: 3}
   enemyList: []
   enemySprites: []
   enemyEffects: []

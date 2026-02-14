@@ -8,12 +8,12 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] List<GameObject> enemies = new();
     [SerializeField] List<Enemy> enemyList = new();
     [SerializeField] List<SpriteRenderer> enemySprites = new();
-    [SerializeField] List<Animator> enemyEffects = new();  // Animator override �ؼ� �ϰ� ������ ����, ���� ���� ����
+    [SerializeField] List<Animator> enemyEffects = new();  
 
     private Bullet bullet;
-    private bool isCoroutining = false; // ��ø�Ǽ� ����Ǵ� ���� ����
+    private bool isCoroutining = false; 
 
-    public void takeDamage(string enemyName) // name : bullet���� ������ enemy�� tag
+    public void takeDamage(string enemyName) 
     {
         (GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni)
             = GetEnemyInformation(enemyName);
@@ -26,15 +26,14 @@ public class EnemyManager : MonoBehaviour
             && objEnemy.layer == LayerMask.NameToLayer("attackable object") && objEnemy.tag == "Push_Object")
         {
             StartCoroutine(changeColor(enemySprite));
-            //StartCoroutine(ResetToDefaultState(enemyAni, enemy));
         }
 
         if (!isCoroutining && enemy.hp > 0)
         {
             Debug.Log("hp --");
-            if((enemy.tag + "Hit") != null)
+            if((enemy.name + "Hit") != null)
             {
-                enemyAni.Play(enemy.tag + "Hit");
+                enemyAni.Play(enemy.name + "Hit");
             }
 
             StartCoroutine(changeColor(enemySprite));
@@ -46,17 +45,16 @@ public class EnemyManager : MonoBehaviour
             && objEnemy.layer == LayerMask.NameToLayer("attackable object")
             && objEnemy.tag =="Push_Object")
         {
-            destroyEnemy(objEnemy, enemy, enemySprite, enemyAni);  // �� �ı�
+            destroyEnemy(objEnemy, enemy, enemySprite, enemyAni); 
         }
 
         if (!isCoroutining && enemy.hp == 0)
         {
             // enemyAni.Play(enemy.tag + "Die");
-            destroyEnemy(objEnemy, enemy, enemySprite, enemyAni);  // �� �ı�
+            destroyEnemy(objEnemy, enemy, enemySprite, enemyAni);  
         }
     }
 
-    // �����ϸ� �ڵ������� enemy���� components�� list�� �߰��ǵ��� ����
     void addEnemyInformationInLists()
     {
         // enemies.AddRange(transform.GetChild());
@@ -65,8 +63,6 @@ public class EnemyManager : MonoBehaviour
         enemyEffects.AddRange(GetComponentsInChildren<Animator>());
     }
 
-    // Ʃ�÷� ���� ������ ��ȯ�ϰ� ��
-    // Damage�� �޴� �ش� ������Ʈ�� Components���� list�鿡�� ��ȯ
     (GameObject, Enemy, SpriteRenderer, Animator) GetEnemyInformation(string enemyName)
     {
         int objIndex = enemies.FindIndex(x => x.name.Equals(enemyName));
@@ -119,7 +115,6 @@ public class EnemyManager : MonoBehaviour
             deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
     }
 
-    // �ı��Ǵ� �� ���� �ڵ����� �ǰԲ�
     void deleteEnemyInLists(GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni)
     {
         enemies.Remove(objEnemy);
@@ -137,7 +132,7 @@ public class EnemyManager : MonoBehaviour
         isCoroutining = false;
     }
 
-    IEnumerator ResetToDefaultState(Animator enemyAni, Enemy enemy)   // �ִϸ��̼��� �⺻ ���·� ��ȯ
+    IEnumerator ResetToDefaultState(Animator enemyAni, Enemy enemy)   
     {
         yield return new WaitForSeconds(0.4f);
         if (enemy.gameObject.layer != LayerMask.NameToLayer("enemy"))
@@ -146,15 +141,12 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    // null reference ���� �߻��� �Ƚ�Ű����
     void removeNullEnemiesFromLists()
     {
-        // �ڿ������� ������ �ε��� ������ �� ����Ƿ�, �������� ��ȸ
         for (int i = enemies.Count - 1; i >= 0; i--)
         {
             if (enemies[i] == null)
             {
-                // �ش� �ε����� �ִ� ��ҵ��� ��� ����
                 enemies.RemoveAt(i);
                 enemyList.RemoveAt(i);
                 enemySprites.RemoveAt(i);
